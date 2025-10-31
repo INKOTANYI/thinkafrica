@@ -40,9 +40,27 @@
           <button type="button" data-appointment-open class="hover:text-blue-700 transition-colors">Book</button>
           <a href="#contact" class="hover:text-blue-700 transition-colors">Contact</a>
         </nav>
-        <button type="button" data-appointment-open class="hidden md:inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-2 text-white font-medium shadow hover:bg-blue-800">Make an Appointment</button>
+        <div class="flex items-center gap-2">
+          <button type="button" data-appointment-open class="hidden md:inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-2 text-white font-medium shadow hover:bg-blue-800">Make an Appointment</button>
+          <button type="button" aria-label="Open menu" data-menu-toggle class="md:hidden inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current text-gray-800"><path d="M4 7h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+          </button>
+        </div>
       </div>
     </header>
+    <!-- Mobile menu -->
+    <div data-mobile-menu class="md:hidden hidden bg-white border-b border-gray-100 shadow-sm">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-3 text-sm">
+        <a href="#about" class="py-2 border-b border-gray-100">About</a>
+        <a href="#vision" class="py-2 border-b border-gray-100">Vision</a>
+        <a href="#mission" class="py-2 border-b border-gray-100">Mission</a>
+        <a href="#services" class="py-2 border-b border-gray-100">Services</a>
+        <a href="#contact" class="py-2">Contact</a>
+        <div class="pt-2">
+          <button type="button" data-appointment-open class="inline-flex w-full items-center justify-center rounded-full bg-blue-700 px-5 py-2 text-white font-medium shadow hover:bg-blue-800">Make an Appointment</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Hero slider (reduced height) -->
     <section class="relative overflow-hidden min-h-[60vh]">
@@ -277,12 +295,12 @@
     <!-- Appointment Modal (no map) -->
     <div data-appointment-modal class="fixed inset-0 z-50 hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative mx-auto mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
+      <div class="relative mx-4 sm:mx-auto mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 max-h-[85vh] flex flex-col">
         <div class="flex items-center justify-between px-6 pt-5 pb-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-t-2xl">
           <h3 class="text-lg sm:text-xl font-semibold">Book an Appointment</h3>
           <button data-appointment-close class="text-white/90 hover:text-white">✕</button>
         </div>
-        <form id="appointmentForm" method="POST" action="{{ route('appointments.store') }}" class="px-6 pb-6 pt-4 grid gap-5">
+        <form id="appointmentForm" method="POST" action="{{ route('appointments.store') }}" class="px-6 pb-2 pt-4 grid gap-5 overflow-y-auto">
           @csrf
           <input type="hidden" name="subject" value="Services" />
           <div class="rounded-xl bg-slate-50 p-4 shadow-md">
@@ -297,14 +315,14 @@
               <div class="relative">
                 <label class="block text-sm text-gray-700 mb-1">Your Email Address <span class="text-red-500">*</span></label>
                 <span class="pointer-events-none absolute left-3 top-9 text-gray-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-1.4 3-6.6 4.15L5.4 7H18.6Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-1.4 3-6.6 4.15L5.4 7H18.6Z"/></svg>
                 </span>
                 <input type="email" name="email" required class="w-full rounded-lg border-gray-300 pl-10 pr-3 py-2 placeholder-gray-500 focus:border-blue-600 focus:ring-2 focus:ring-blue-200" />
               </div>
               <div class="relative">
                 <label class="block text-sm text-gray-700 mb-1">Phone Number</label>
                 <span class="pointer-events-none absolute left-3 top-9 text-gray-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.7 11.7 0 0 0 3.7.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 7a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11.7 11.7 0 0 0 .6 3.7 1 1 0 0 1-.25 1Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.7 11.7 0 0 0 3.7.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 7a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11.7 11.7 0 0 0 .6 3.7 1 1 0 0 1-.25 1Z"/></svg>
                 </span>
                 <input type="text" name="phone" class="w-full rounded-lg border-gray-300 pl-10 pr-3 py-2 placeholder-gray-500 focus:border-blue-600 focus:ring-2 focus:ring-blue-200" />
               </div>
@@ -334,11 +352,25 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-end gap-2 pt-1">
+          <div class="flex justify-end gap-2 pt-3 sticky bottom-0 bg-white border-t">
             <button type="submit" class="rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 min-w-[120px]" data-submit-btn>Submit</button>
             <button type="button" data-appointment-close class="rounded-md border px-5 py-2">Close</button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <!-- Success Popup Modal (animated) -->
+    <div data-success-modal class="fixed inset-0 z-50 hidden">
+      <div data-success-backdrop class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300"></div>
+      <div data-success-panel class="relative mx-4 sm:mx-auto mt-24 max-w-md rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 transition-all duration-300 transform opacity-0 scale-95 translate-y-2">
+        <div class="px-6 pt-5 pb-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-t-2xl font-semibold">Success</div>
+        <div class="p-6 text-gray-800">
+          <p data-success-text>Your appointment request has been submitted. We will get back to you soon.</p>
+          <div class="mt-6 flex justify-end">
+            <button data-success-close class="rounded-md bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2">OK</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -452,7 +484,7 @@
     </footer>
 
     <!-- WhatsApp Floating Button with label -->
-    <a href="https://wa.me/250783323024?text=Hello%20Think%20Africa%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg px-4 h-14">
+    <a href="#" data-whatsapp-phone="250783323024" data-whatsapp-text="Hello Think Africa, I'd like to learn more." class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg px-4 h-14">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-7 h-7 fill-current"><path d="M19.11 17.39c-.3-.14-1.77-.87-2.04-.97-.27-.1-.47-.14-.66.14-.2.28-.76.97-.93 1.17-.17.2-.34.21-.64.07-.3-.14-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.28.3-.47.1-.2.05-.35-.02-.49-.07-.14-.66-1.6-.9-2.19-.24-.59-.48-.51-.66-.52-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.35-.27.28-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.21 5.09 4.5.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.34z"/><path d="M26.68 5.32C23.75 2.39 19.98.86 16 .86 8.28.86 2 7.14 2 14.86c0 2.25.59 4.46 1.72 6.41L2 30l8.9-1.65c1.87 1.02 3.98 1.56 6.12 1.56 7.72 0 14-6.28 14-14 0-3.98-1.53-7.75-4.34-10.59z"/></svg>
       <span class="pr-2 font-medium">Chat with us</span>
     </a>
@@ -520,6 +552,8 @@
       // Appointment modal open/close
       const apptModal = document.querySelector('[data-appointment-modal]');
       const apptService = apptModal ? apptModal.querySelector('[data-appointment-service]') : null;
+      const successModal = document.querySelector('[data-success-modal]');
+      const successText = successModal ? successModal.querySelector('[data-success-text]') : null;
       document.querySelectorAll('[data-appointment-open]').forEach(btn => btn.addEventListener('click', ()=>{ if(apptModal) apptModal.classList.remove('hidden'); }));
       document.querySelectorAll('[data-appointment-close]').forEach(btn => btn.addEventListener('click', ()=>{ if(apptModal) apptModal.classList.add('hidden'); }));
 
@@ -529,23 +563,81 @@
         apptForm.addEventListener('submit', async (e)=>{
           e.preventDefault();
           const fd = new FormData(apptForm);
+          // Validate preferred_date is not in the past
+          const pd = fd.get('preferred_date');
+          if (pd){
+            const today = new Date();
+            const minStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+            if (pd < minStr){
+              const err = document.createElement('div');
+              err.textContent = 'Please choose a date today or in the future.';
+              err.className = 'fixed bottom-4 right-4 z-50 rounded-md bg-red-600 text-white px-4 py-3 shadow';
+              document.body.appendChild(err);
+              setTimeout(()=> err.remove(), 4000);
+              return;
+            }
+          }
           // keep service, preferred_date, preferred_time, message as-is for backend
           const token = fd.get('_token');
           const btn = apptForm.querySelector('[data-submit-btn]');
           const prev = btn ? btn.textContent : '';
           if (btn){ btn.disabled = true; btn.textContent = 'Submitting...'; btn.classList.add('opacity-80'); }
-          const res = await fetch(apptForm.action, { method: 'POST', headers: { 'X-CSRF-TOKEN': token }, body: fd });
-          if (res.ok){
-            if (apptModal) apptModal.classList.add('hidden');
-            apptForm.reset();
-            const toast = document.createElement('div');
-            toast.textContent = 'Appointment submitted successfully';
-            toast.className = 'fixed bottom-4 right-4 z-50 rounded-md bg-emerald-600 text-white px-4 py-3 shadow';
-            document.body.appendChild(toast);
-            setTimeout(()=> toast.remove(), 4000);
-          } else {
+          try {
+            const res = await fetch(apptForm.action, {
+              method: 'POST',
+              headers: {
+                'X-CSRF-TOKEN': token,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+              },
+              body: fd,
+              redirect: 'follow',
+              credentials: 'same-origin'
+            });
+            if (res.ok || res.redirected || (res.status && res.status < 400)){
+              if (apptModal) apptModal.classList.add('hidden');
+              apptForm.reset();
+              const showSuccess = (el)=>{
+                try { el.classList.remove('hidden'); } catch(_) { el.style.display = 'block'; }
+                el.style.zIndex = '1000';
+                const bd = el.querySelector('[data-success-backdrop]');
+                const pn = el.querySelector('[data-success-panel]');
+                requestAnimationFrame(()=>{
+                  if (bd) bd.classList.remove('opacity-0');
+                  if (pn){ pn.classList.remove('opacity-0','scale-95','translate-y-2'); }
+                });
+                setTimeout(()=>{
+                  if (bd) bd.classList.add('opacity-0');
+                  if (pn){ pn.classList.add('opacity-0','scale-95','translate-y-2'); }
+                  setTimeout(()=>{ try { el.classList.add('hidden'); } catch(_) { el.style.display = 'none'; } }, 280);
+                }, 3000);
+              };
+              if (successModal){
+                if (successText) successText.textContent = 'Your appointment request has been submitted. We will get back to you soon.';
+                showSuccess(successModal);
+              } else {
+                // Fallback lightweight popup
+                const wrap = document.createElement('div');
+                wrap.className = 'fixed inset-0 z-[1000]';
+                wrap.innerHTML = `
+                  <div class="absolute inset-0 bg-black/60"></div>
+                  <div class="relative mx-4 sm:mx-auto mt-24 max-w-md rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
+                    <div class="px-6 pt-5 pb-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-t-2xl font-semibold">Success</div>
+                    <div class="p-6 text-gray-800">Your appointment request has been submitted. We will get back to you soon.</div>
+                  </div>`;
+                document.body.appendChild(wrap);
+                setTimeout(()=>{ wrap.remove(); }, 3000);
+              }
+            } else {
+              const err = document.createElement('div');
+              err.textContent = 'Failed to submit. Please try again.';
+              err.className = 'fixed bottom-4 right-4 z-50 rounded-md bg-red-600 text-white px-4 py-3 shadow';
+              document.body.appendChild(err);
+              setTimeout(()=> err.remove(), 4000);
+            }
+          } catch (e) {
             const err = document.createElement('div');
-            err.textContent = 'Failed to submit. Please try again.';
+            err.textContent = 'Network error. Please check your connection and try again.';
             err.className = 'fixed bottom-4 right-4 z-50 rounded-md bg-red-600 text-white px-4 py-3 shadow';
             document.body.appendChild(err);
             setTimeout(()=> err.remove(), 4000);
@@ -580,6 +672,68 @@
           // no scroll
         });
       });
+
+      // Ensure sticky action bar stays above content on all browsers
+      const stickyBars = document.querySelectorAll('#appointmentForm .sticky');
+      stickyBars.forEach(el => { el.style.zIndex = '10'; });
+
+      // WhatsApp / WhatsApp Business opener with fallbacks
+      function openWhatsApp(phoneRaw, text){
+        const phone = phoneRaw.replace(/\D/g, '');
+        const encoded = encodeURIComponent(text || '');
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const waBusinessScheme = isIOS ? `whatsapp-business://send?phone=${phone}&text=${encoded}` : `intent://send?phone=${phone}&text=${encoded}#Intent;package=com.whatsapp.w4b;scheme=smsto;end`;
+        const waPersonalScheme = isIOS ? `whatsapp://send?phone=${phone}&text=${encoded}` : `intent://send?phone=${phone}&text=${encoded}#Intent;package=com.whatsapp;scheme=smsto;end`;
+        const waWeb = `https://wa.me/${phone}?text=${encoded}`;
+
+        let opened = false;
+        const tryOpen = (url, next) => {
+          const win = window.open(url, '_self');
+          opened = true;
+          // Some browsers block or ignore; chain fallback via timeout
+          setTimeout(()=>{ if (!document.hidden && typeof next === 'function') next(); }, 700);
+        };
+        // Prefer Business app
+        tryOpen(waBusinessScheme, ()=> tryOpen(waPersonalScheme, ()=> window.location.href = waWeb));
+      }
+
+      const waBtn = document.querySelector('[data-whatsapp-phone]');
+      if (waBtn){
+        waBtn.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const phone = waBtn.getAttribute('data-whatsapp-phone') || '';
+          const text = waBtn.getAttribute('data-whatsapp-text') || '';
+          openWhatsApp(phone, text);
+        });
+      }
+
+      // Set min date on preferred_date to disable past dates
+      if (apptModal){
+        const dateInput = apptModal.querySelector('input[name="preferred_date"]');
+        if (dateInput){
+          const today = new Date();
+          const minStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+          dateInput.setAttribute('min', minStr);
+          dateInput.addEventListener('change', ()=>{ if (dateInput.value && dateInput.value < minStr) dateInput.value = minStr; });
+        }
+      }
+
+      // Success modal close
+      if (successModal){
+        const bd = successModal.querySelector('[data-success-backdrop]');
+        const pn = successModal.querySelector('[data-success-panel]');
+        successModal.addEventListener('click', (e)=>{ if (e.target === successModal || e.target === bd) {
+          if (bd) bd.classList.add('opacity-0');
+          if (pn){ pn.classList.add('opacity-0','scale-95','translate-y-2'); }
+          setTimeout(()=> successModal.classList.add('hidden'), 280);
+        }});
+        const okBtn = successModal.querySelector('[data-success-close]');
+        if (okBtn) okBtn.addEventListener('click', ()=>{
+          if (bd) bd.classList.add('opacity-0');
+          if (pn){ pn.classList.add('opacity-0','scale-95','translate-y-2'); }
+          setTimeout(()=> successModal.classList.add('hidden'), 280);
+        });
+      }
     </script>
   </body>
 </html>
