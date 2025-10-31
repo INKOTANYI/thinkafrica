@@ -78,8 +78,7 @@
       </div>
     </section>
 
-    <!-- Shape divider to separate Contact and Footer -->
-    <div class="relative bg-[#0f1a2e]"><svg class="block w-full" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,64 C240,16 480,16 720,64 C960,112 1200,112 1440,64 L1440,80 L0,80 Z" fill="#0f1a2e"/><path d="M0,64 C240,24 480,24 720,64 C960,104 1200,104 1440,64 L1440,80 L0,80 Z" fill="#111A2F" opacity="0.6"/></svg></div>
+    <!-- Shape divider removed -->
 
     <section id="about" class="relative">
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white via-emerald-50/30 to-blue-50/20"></div>
@@ -293,7 +292,7 @@
     <!-- Appointment Modal (no map) -->
     <div data-appointment-modal class="fixed inset-0 z-50 hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative mx-4 sm:mx-auto mt-6 sm:mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 h-[85vh] overflow-hidden flex flex-col">
+      <div class="relative mx-4 sm:mx-auto mt-6 sm:mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 h-[90vh] overflow-hidden flex flex-col">
         <div class="flex items-center justify-between px-6 pt-5 pb-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-t-2xl">
           <h3 class="text-lg sm:text-xl font-semibold">Book an Appointment</h3>
           <button data-appointment-close class="text-white/90 hover:text-white">✕</button>
@@ -301,7 +300,7 @@
         <form id="appointmentForm" method="POST" action="{{ route('appointments.store') }}" class="flex flex-col overflow-hidden">
           @csrf
           <input type="hidden" name="subject" value="Services" />
-          <div class="px-6 pt-4 pb-20 sm:pb-2 grow overflow-y-auto grid gap-5">
+          <div class="px-6 pt-4 pb-28 sm:pb-4 grow overflow-y-auto grid gap-5">
             <div class="rounded-xl bg-slate-50 p-4 shadow-md">
               <div class="grid gap-4 sm:grid-cols-2">
               <div class="relative">
@@ -352,7 +351,7 @@
             </div>
             </div>
           </div>
-          <div class="px-6 py-3 flex justify-center sm:justify-end gap-3 bg-white border-t shrink-0">
+          <div class="px-6 py-3 flex justify-center sm:justify-end gap-3 bg-white border-t shrink-0 z-20">
             <button type="submit" class="rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 min-w-[120px]" data-submit-btn>Submit</button>
             <button type="button" data-appointment-close class="rounded-md border px-5 py-2">Close</button>
           </div>
