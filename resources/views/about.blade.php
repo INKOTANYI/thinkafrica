@@ -26,7 +26,7 @@
     </div>
 
     <!-- Navbar (white, sticky under topbar) -->
-    <header class="sticky top-10 z-40 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#" class="inline-flex items-center gap-2 text-xl font-semibold">
           <span class="inline-block size-2 rounded-full bg-blue-600"></span>
@@ -42,8 +42,9 @@
         </nav>
         <div class="flex items-center gap-2">
           <button type="button" data-appointment-open class="hidden md:inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-2 text-white font-medium shadow hover:bg-blue-800">Make an Appointment</button>
-          <button type="button" aria-label="Open menu" data-menu-toggle class="md:hidden inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100">
+          <button type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle class="md:hidden inline-flex items-center gap-2 rounded-md px-3 py-2 hover:bg-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current text-gray-800"><path d="M4 7h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+            <span class="text-sm font-medium text-gray-800">Menu</span>
           </button>
         </div>
       </div>
@@ -295,7 +296,7 @@
     <!-- Appointment Modal (no map) -->
     <div data-appointment-modal class="fixed inset-0 z-50 hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative mx-4 sm:mx-auto mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 max-h-[85vh] flex flex-col">
+      <div class="relative mx-4 sm:mx-auto mt-6 sm:mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 max-h-[85vh] flex flex-col">
         <div class="flex items-center justify-between px-6 pt-5 pb-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-t-2xl">
           <h3 class="text-lg sm:text-xl font-semibold">Book an Appointment</h3>
           <button data-appointment-close class="text-white/90 hover:text-white">✕</button>
@@ -354,7 +355,7 @@
             </div>
             </div>
           </div>
-          <div class="px-6 py-3 flex justify-end gap-2 bg-white border-t shrink-0">
+          <div class="px-6 py-3 flex justify-center sm:justify-end gap-3 bg-white border-t shrink-0">
             <button type="submit" class="rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 min-w-[120px]" data-submit-btn>Submit</button>
             <button type="button" data-appointment-close class="rounded-md border px-5 py-2">Close</button>
           </div>
@@ -550,6 +551,21 @@
         });
       }, { threshold: 0.15 });
       fades.forEach(el=> obs.observe(el));
+
+      // Mobile menu toggle (show/hide and aria state)
+      const menuBtn = document.querySelector('[data-menu-toggle]');
+      const mobileMenu = document.querySelector('[data-mobile-menu]');
+      if (menuBtn && mobileMenu){
+        const toggleMenu = ()=>{
+          const isHidden = mobileMenu.classList.toggle('hidden');
+          menuBtn.setAttribute('aria-expanded', String(!isHidden));
+        };
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileMenu.querySelectorAll('a, [data-appointment-open]').forEach(el=> el.addEventListener('click', ()=>{
+          mobileMenu.classList.add('hidden');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }));
+      }
 
       // Appointment modal open/close
       const apptModal = document.querySelector('[data-appointment-modal]');
