@@ -44,13 +44,13 @@
           <button type="button" data-appointment-open class="hidden md:inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-2 text-white font-medium shadow hover:bg-blue-800">Make an Appointment</button>
           <button type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle class="md:hidden inline-flex items-center gap-2 rounded-md px-3 py-2 hover:bg-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current text-gray-800"><path d="M4 7h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
-            <span class="text-sm font-medium text-gray-800">Menu</span>
+            <span class="text-sm font-medium text-gray-800 sm:hidden">Menu</span>
           </button>
         </div>
       </div>
     </header>
     <!-- Mobile menu -->
-    <div data-mobile-menu class="md:hidden hidden bg-white border-b border-gray-100 shadow-sm">
+    <div data-mobile-menu class="md:hidden hidden fixed top-16 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-3 text-sm">
         <a href="#about" class="py-2 border-b border-gray-100">About</a>
         <a href="#vision" class="py-2 border-b border-gray-100">Vision</a>
