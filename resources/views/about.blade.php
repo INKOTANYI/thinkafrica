@@ -300,11 +300,12 @@
           <h3 class="text-lg sm:text-xl font-semibold">Book an Appointment</h3>
           <button data-appointment-close class="text-white/90 hover:text-white">✕</button>
         </div>
-        <form id="appointmentForm" method="POST" action="{{ route('appointments.store') }}" class="px-6 pb-2 pt-4 grid gap-5 overflow-y-auto">
+        <form id="appointmentForm" method="POST" action="{{ route('appointments.store') }}" class="flex flex-col overflow-hidden">
           @csrf
           <input type="hidden" name="subject" value="Services" />
-          <div class="rounded-xl bg-slate-50 p-4 shadow-md">
-            <div class="grid gap-4 sm:grid-cols-2">
+          <div class="px-6 pt-4 pb-2 grow overflow-y-auto grid gap-5">
+            <div class="rounded-xl bg-slate-50 p-4 shadow-md">
+              <div class="grid gap-4 sm:grid-cols-2">
               <div class="relative">
                 <label class="block text-sm text-gray-700 mb-1">Your Full Name <span class="text-red-500">*</span></label>
                 <span class="pointer-events-none absolute left-3 top-9 text-gray-400">
@@ -351,8 +352,9 @@
                 <textarea name="message" rows="5" class="w-full rounded-lg border-gray-300 px-3 py-2 placeholder-gray-500 focus:border-blue-600 focus:ring-2 focus:ring-blue-200"></textarea>
               </div>
             </div>
+            </div>
           </div>
-          <div class="flex justify-end gap-2 pt-3 sticky bottom-0 bg-white border-t">
+          <div class="px-6 py-3 flex justify-end gap-2 bg-white border-t shrink-0">
             <button type="submit" class="rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 min-w-[120px]" data-submit-btn>Submit</button>
             <button type="button" data-appointment-close class="rounded-md border px-5 py-2">Close</button>
           </div>
@@ -484,7 +486,7 @@
     </footer>
 
     <!-- WhatsApp Floating Button with label -->
-    <a href="#" data-whatsapp-phone="250783323024" data-whatsapp-text="Hello Think Africa, I'd like to learn more." class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg px-4 h-14">
+    <a href="https://wa.me/250783323024?text=Hello%20Think%20Africa%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg px-4 h-14">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-7 h-7 fill-current"><path d="M19.11 17.39c-.3-.14-1.77-.87-2.04-.97-.27-.1-.47-.14-.66.14-.2.28-.76.97-.93 1.17-.17.2-.34.21-.64.07-.3-.14-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.28.3-.47.1-.2.05-.35-.02-.49-.07-.14-.66-1.6-.9-2.19-.24-.59-.48-.51-.66-.52-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.35-.27.28-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.21 5.09 4.5.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.34z"/><path d="M26.68 5.32C23.75 2.39 19.98.86 16 .86 8.28.86 2 7.14 2 14.86c0 2.25.59 4.46 1.72 6.41L2 30l8.9-1.65c1.87 1.02 3.98 1.56 6.12 1.56 7.72 0 14-6.28 14-14 0-3.98-1.53-7.75-4.34-10.59z"/></svg>
       <span class="pr-2 font-medium">Chat with us</span>
     </a>
