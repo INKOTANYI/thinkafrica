@@ -66,9 +66,6 @@
     <!-- Hero slider (reduced height) -->
     <section class="relative overflow-hidden min-h-[60vh]">
       <div id="hero-slide" class="absolute inset-0 bg-center bg-cover"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/50"></div>
-      <div class="pointer-events-none absolute -right-24 top-0 h-[140%] w-[55%] -skew-x-12 bg-blue-800/30"></div>
-      <div class="pointer-events-none absolute -right-40 top-20 h-[120%] w-[35%] -skew-x-12 bg-emerald-600/30"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <div class="max-w-3xl text-white">
@@ -296,7 +293,7 @@
     <!-- Appointment Modal (no map) -->
     <div data-appointment-modal class="fixed inset-0 z-50 hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative mx-4 sm:mx-auto mt-6 sm:mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 max-h-[85vh] flex flex-col">
+      <div class="relative mx-4 sm:mx-auto mt-6 sm:mt-16 max-w-lg rounded-2xl bg-white shadow-2xl ring-1 ring-black/10 h-[85vh] overflow-hidden flex flex-col">
         <div class="flex items-center justify-between px-6 pt-5 pb-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-t-2xl">
           <h3 class="text-lg sm:text-xl font-semibold">Book an Appointment</h3>
           <button data-appointment-close class="text-white/90 hover:text-white">✕</button>
@@ -304,7 +301,7 @@
         <form id="appointmentForm" method="POST" action="{{ route('appointments.store') }}" class="flex flex-col overflow-hidden">
           @csrf
           <input type="hidden" name="subject" value="Services" />
-          <div class="px-6 pt-4 pb-2 grow overflow-y-auto grid gap-5">
+          <div class="px-6 pt-4 pb-20 sm:pb-2 grow overflow-y-auto grid gap-5">
             <div class="rounded-xl bg-slate-50 p-4 shadow-md">
               <div class="grid gap-4 sm:grid-cols-2">
               <div class="relative">
